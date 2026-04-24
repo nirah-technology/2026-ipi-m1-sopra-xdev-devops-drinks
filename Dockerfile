@@ -6,7 +6,12 @@ WORKDIR /app
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring
 
-COPY ./ ./
+# NON COMPLIANT
+# COPY ./ ./
+
+# COMPLIANT
+COPY ./pom.xml ./
+COPY ./src ./
 
 RUN mvn clean package
 RUN chown -R spring:spring /app
