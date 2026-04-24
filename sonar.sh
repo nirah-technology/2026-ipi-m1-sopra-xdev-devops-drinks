@@ -1,0 +1,1 @@
+docker run --rm -v ./:/usr/src sonarsource/sonar-scanner-cli

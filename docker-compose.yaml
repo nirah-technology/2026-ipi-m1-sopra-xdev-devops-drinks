@@ -9,21 +9,23 @@ services:
       - POSTGRES_DB=devops
       - POSTGRES_USER=devops
       - POSTGRES_PASSWORD=devops
-    # volumes:
-    #   - postgres_data:/var/lib/postgresql/data
-
+      
   drink:
     build: .
     container_name: devops_drink
     ports:
       - 8080:8080
     environment:
-      - LOGGER_LEVE=DEBUG
+      - LOGGER_LEVEL=DEBUG
     depends_on:
       - db
     cpu_count: 1
     mem_limit: 512m
     user: spring
 
-volumes:
-  postgres_data:
+  sonar:
+    image: sonarqube:community
+    ports:
+      - 9000:9000
+    container_name: sonar
+
