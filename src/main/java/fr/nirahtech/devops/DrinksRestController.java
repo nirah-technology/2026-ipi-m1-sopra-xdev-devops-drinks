@@ -30,7 +30,7 @@ public class DrinksRestController {
         Page<Drink> result = null;
 
         if (Objects.nonNull(isAlcool)) {
-            if (isAlcool) {
+            if (Boolean.TRUE.equals(isAlcool)) {
                 result = this.drinksRepository.findAllByIsAlcool(pageable);
             } else {
                 result = this.drinksRepository.findAllByIsNonAlcool(pageable);

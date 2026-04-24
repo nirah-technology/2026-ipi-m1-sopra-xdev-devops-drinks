@@ -13,7 +13,7 @@ USER spring
 COPY ./pom.xml ./
 COPY ./src ./
 
-RUN mvn clean package
-RUN chown -R spring:spring /app
+RUN chown -R spring:spring /app \ 
+    && mvn clean package
 
 CMD ["java", "-jar", "/app/target/devops-0.0.1-SNAPSHOT.jar"]
