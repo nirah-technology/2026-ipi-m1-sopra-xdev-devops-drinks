@@ -1,10 +1,29 @@
 services:
   db:
     image: postgres
-    container_name: devops_db
+    container_name: db
+    restart: on-failure
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_DB=devops
       - POSTGRES_USER=devops
       - POSTGRES_PASSWORD=devops
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+
+  drink:
+    build: .
+    container_name: devops_drink
+    ports:
+      - 8080:8080
+    environment:
+      - LOGGER_LEVE=DEBUG
+    depends_on:
+      - db
+    cpu_count: 1
+    mem_limit: 512m
+    user: spring
+
+volumes:
+  postgres_data:
